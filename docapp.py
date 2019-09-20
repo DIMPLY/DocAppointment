@@ -1,8 +1,6 @@
-from flask import Flask, request
-from flask_cors import CORS, cross_origin
+from flask import Flask #, request
+from flask_cors import CORS #, cross_origin
 from flask_restful import Resource, Api
-from json import dumps
-from flask_jsonpify import jsonify
 
 from database import DataBase
 
@@ -14,11 +12,9 @@ CORS(app)
 
 @app.route("/")
 def hello():
-    return jsonify({'text':'Hello World!'})
+    return {'text':'Hello World!'}
 
 class Appointments(Resource):
-    #def get(self):
-    #    return db.execute('select * from appointments')
     def get(self, subject, subjectid):
         query = '''
                 select a.doctorid,
@@ -38,12 +34,12 @@ class Appointments(Resource):
           '''.format('d' if subject=='doctor' else 'p', subjectid)
         return db.execute(query)
 
+
 class Doctors(Resource):
     def get(self):
         query = 'select * from doctors'
         return db.execute(query)
 
-class DoctorNew(Resource):
     def post(self, firstname, lastname):
         if db.execute('select 1 from doctors where firstname=\'{}\' and lastname=\'{}\''.format(firstname, lastname)):
             return {'success': False, 'reason':'Doctor already in database.'}
@@ -52,8 +48,8 @@ class DoctorNew(Resource):
 
 
 api.add_resource(Appointments, '/appointments/<subject>/<subjectid>')
-api.add_resource(Doctors, '/doctors')
-api.add_resource(DoctorNew, '/doctor/<firstname>/<lastname>')
+api.add_resource(Doctors, '/doctors', '/doctor/<firstname>/<lastname>')
+#api.add_resource(DoctorNew, '/doctor/<firstname>/<lastname>')
 
 if __name__ == '__main__':
    app.run(port=5002)
