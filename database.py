@@ -9,7 +9,9 @@ class DataBase:
 
     def execute(self, query, post=False):
         try:
+            print(query)
             self.cur.execute(query)
+            self.conn.commit()
             return self.cur.rowcount if post else [dict(record) for record in self.cur]
-        except e:
+        except Exception as e:
             return str(e)
