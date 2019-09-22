@@ -78,5 +78,17 @@ class Appointments(Services):
 
 class Slots(Resource):
     def get(self, doctorid):
-        query = 'select time_slots(\'{}\'::text, now(), now() + interval \'7 days\')'.format(doctorid)
+        query = """SELECT '{}' as doctorid, s.starttime::text, (s.starttime + interval '15 minute')::text as endtime
+FROM (SELECT date_trunc('HOUR', now()) + make_interval(mins => date_part('MINUTE', now())::int/15+1+Number) * 15 as starttime from Numbers) as s
+WHERE
+    date_part('HOUR', s.starttime) >= 9
+        AND
+    date_part('HOUR', s.starttime + interval '14 minute') <= 16
+        AND
+    NOT EXISTS (SELECT 1 FROM appointments AS a WHERE s.starttime::time < a.endtime AND endtime::time > a.starttime AND a.doctorid = doctorid AND a.date = date_trunc('day', s.starttime))
+        AND
+    extract(dow from s.starttime) not in (0,6)
+        AND
+    s.starttime <= now() + interval '10 days' - interval '15 minute'
+ORDER BY s.starttime""".format(doctorid)
         return db.execute(query)
