@@ -24,11 +24,11 @@ class Roles(Resource):
         parser.add_argument('roleid', type=str)
         roleid = parser.parse_args()['roleid']
         res = db.execute('delete from prescriptions where {}id=\'{}\''.format(self.category, roleid), post=True)
-        if isinstance(res, int):
+        if isinstance(res, int) or res == "no results to fetch":
             res = db.execute('delete from appointments where {}id=\'{}\''.format(self.category, roleid), post=True)
-        if isinstance(res, int): 
-            res = db.execute('delete from {}s where id=\'{}\''.format(self.category, roleid), post=True)
-            success = res==1
+            if isinstance(res, int) or res == "no results to fetch":
+                res = db.execute('delete from {}s where id=\'{}\''.format(self.category, roleid), post=True)
+        success = res==1
         return {'success': success, 'affectedrows': res}
 
     def put(self):
