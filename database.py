@@ -9,16 +9,12 @@ class DataBase:
 
     def execute(self, query, post=False):
         try:
-            print(query)
             self.cur.execute(query)
             self.conn.commit()
             if post:
                 return self.cur.rowcount
             else:
-                ret = []
-                for rec in self.cur:
-                    print(rec)
-                    ret.append(dict(rec))
-                return ret#[dict(record) for record in self.cur]
+                return [dict(record) for record in self.cur]
         except Exception as e:
+            self.conn.rollback()
             return str(e)
