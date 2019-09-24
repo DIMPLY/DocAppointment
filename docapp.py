@@ -6,7 +6,7 @@ from services import Appointments, Prescriptions, Slots
 
 app = Flask(__name__)
 api = Api(app)
-CORS(app)
+CORS(app, resources={r"*": {"origins": "*"}})
 
 @app.route("/")
 def hello():
@@ -19,4 +19,4 @@ api.add_resource(Patients, '/patient')
 api.add_resource(Slots, '/slots/<doctorid>')
 
 if __name__ == '__main__':
-   app.run(port=5002)
+   app.run(host='0.0.0.0', port=5002)
