@@ -13,18 +13,23 @@ class Roles(Resource):
         parser.add_argument('lastname', type=str)
         args = parser.parse_args()
         firstname, lastname = args['firstname'], args['lastname']
-        if db.execute('select 1 from {}s where firstname=\'{}\' and lastname=\'{}\''.format(self.category, firstname, lastname)):
-            return {'success': False, 'reason':'{} already in database.'.format(self.category.capitalize())}
-        query = 'insert into {cat}s values (uuid_generate_v3(uuid_generate_v1(),\'{fn}\'), \'{fn}\', \'{ln}\')'.format(cat=self.category, fn=firstname, ln=lastname)
+        #if db.execute('select id from {}s where firstname=\'{}\' and lastname=\'{}\''.format(self.category, firstname, lastname)):
+        #    return {'success': False, 'reason':'{} already in database.'.format(self.category.capitalize())}
+        newid = db.execute("select uuid_generate_v3(uuid_generate_v1(),\'{}\')".format(firstname))[0]['uuid_generate_v3']
+        query = 'insert into {}s values (\'{}\', \'{}\', \'{}\')'.format(self.category, newid, firstname, lastname)
         res = db.execute(query, post=True)
-        return {'success': res==1, 'affectedrows': res}
+        return {'success': res==1, 'affectedrows': res, 'id': newid}
 
     def delete(self):
         parser.add_argument('roleid', type=str)
-        args = parser.parse_args()
-        query = 'delete from {}s where id=\'{}\''.format(self.category, args['roleid'])
-        res = db.execute(query, post=True)
-        return {'success': res==1, 'affectedrows': res}
+        roleid = parser.parse_args()['roleid']
+        res = db.execute('delete from prescriptions where {}id=\'{}\''.format(self.category, roleid), post=True)
+        if isinstance(res, int):
+            res = db.execute('delete from appointments where {}id=\'{}\''.format(self.category, roleid), post=True)
+        if isinstance(res, int): 
+            res = db.execute('delete from {}s where id=\'{}\''.format(self.category, roleid), post=True)
+            success = res==1
+        return {'success': success, 'affectedrows': res}
 
     def put(self):
         parser.add_argument('id', required=True)
