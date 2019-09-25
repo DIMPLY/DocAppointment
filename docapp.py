@@ -2,7 +2,8 @@ from flask import Flask #, request
 from flask_cors import CORS #, cross_origin
 from flask_restful import Api
 from roles import Doctors, Patients
-from services import Appointments, Prescriptions, Slots 
+from services import Appointments, Prescriptions, Slots
+from medicines import Medicines
 
 app = Flask(__name__)
 api = Api(app)
@@ -17,6 +18,7 @@ api.add_resource(Prescriptions, '/prescription', '/prescription/<role>')
 api.add_resource(Doctors, '/doctor')
 api.add_resource(Patients, '/patient')
 api.add_resource(Slots, '/slots/<doctorid>')
+api.add_resource(Medicines, '/medicine')
 
 if __name__ == '__main__':
    app.run(host='0.0.0.0', port=5002)
