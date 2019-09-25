@@ -13,8 +13,6 @@ class Roles(Resource):
         parser.add_argument('lastname', type=str)
         args = parser.parse_args()
         firstname, lastname = args['firstname'], args['lastname']
-        #if db.execute('select id from {}s where firstname=\'{}\' and lastname=\'{}\''.format(self.category, firstname, lastname)):
-        #    return {'success': False, 'reason':'{} already in database.'.format(self.category.capitalize())}
         newid = db.execute("select uuid_generate_v3(uuid_generate_v1(),\'{}\')".format(firstname))[0]['uuid_generate_v3']
         query = 'insert into {}s values (\'{}\', \'{}\', \'{}\')'.format(self.category, newid, firstname, lastname)
         res = db.execute(query, post=True)
