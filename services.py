@@ -53,6 +53,9 @@ class Appointments(Services):
         parser.add_argument('start')
         parser.add_argument('end')
         args = parser.parse_args()
+        overlap = db.execute("SELECT count(*) FROM appointments WHERE endtime > '{start}'::timetz AND starttime < '{end}'::timetz AND doctorid = '{docid}' AND date = '{date}'::date".format(start=args['start'],end=args['end'],docid=args['doctorid'],date=args['date']))
+        if overlap[0]['count'] > 0:
+            return {'success': False, 'affectedrows': 0, 'info': 'cannot insert overlapped appointments'}
         query = 'insert into appointments values (\'{}\', \'{}\', 1, \'{}\', \'{}\', \'{}\')'.format(args['doctorid'], args['patientid'], args['date'], args['start'], args['end'])
         res = db.execute(query, post=True)
         return {'success': res==1, 'affectedrows': res}
