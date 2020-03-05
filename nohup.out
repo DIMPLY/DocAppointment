@@ -1,0 +1,101 @@
+ * Serving Flask app "docapp" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:5002/ (Press CTRL+C to quit)
+162.211.160.162 - - [24/Sep/2019 16:06:00] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:06:06] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:06:12] "[37mOPTIONS /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:06:12] "[37mPOST /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:06:12] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:06:15] "[37mOPTIONS /doctor?roleid=07e24718-eaec-3414-9e9c-b39297fc4afa HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:06:15] "[37mDELETE /doctor?roleid=07e24718-eaec-3414-9e9c-b39297fc4afa HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:06:15] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:06:24] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:06:26] "[37mGET /slots/3d6ee664-cd8b-30d9-8eaa-7cdfb7a7529e HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:06:36] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:07:43] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:08:00] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:08:21] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:08:26] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:09:14] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:10:39] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:10:54] "[37mOPTIONS /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:10:54] "[37mPOST /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:10:54] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:10:58] "[37mOPTIONS /doctor?roleid=737f2773-4202-3de3-9b6c-44ad993c7dad HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:10:58] "[37mDELETE /doctor?roleid=737f2773-4202-3de3-9b6c-44ad993c7dad HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:10:58] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:11:06] "[37mOPTIONS /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:11:06] "[37mPOST /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:11:06] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:11:23] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:11:27] "[37mGET /slots/e22dbfe3-5e03-36de-b45e-da4790f043ae HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:11:49] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:11:59] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:12:11] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:12:15] "[37mGET /slots/3d6ee664-cd8b-30d9-8eaa-7cdfb7a7529e HTTP/1.1[0m" 200 -
+ * Serving Flask app "docapp" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:5002/ (Press CTRL+C to quit)
+162.211.160.162 - - [24/Sep/2019 16:34:23] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:35:40] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:36:04] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:49:31] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:49:42] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:49:45] "[37mGET /slots/e22dbfe3-5e03-36de-b45e-da4790f043ae HTTP/1.1[0m" 200 -
+ * Serving Flask app "docapp" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:5002/ (Press CTRL+C to quit)
+68.33.109.149 - - [24/Sep/2019 16:54:08] "[37mOPTIONS /doctor HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 16:54:08] "[37mPOST /doctor HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 16:54:08] "[37mGET /doctor HTTP/1.1[0m" 200 -
+ * Serving Flask app "docapp" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:5002/ (Press CTRL+C to quit)
+68.33.109.149 - - [24/Sep/2019 16:54:34] "[37mGET /doctor HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:54:36] "[37mGET /doctor HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 16:54:36] "[37mGET /slots/e22dbfe3-5e03-36de-b45e-da4790f043ae HTTP/1.1[0m" 200 -
+162.211.160.162 - - [24/Sep/2019 16:54:39] "[37mGET /slots/3d6ee664-cd8b-30d9-8eaa-7cdfb7a7529e HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 16:54:45] "[37mOPTIONS /appointment HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 16:54:45] "[37mPOST /appointment HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 16:54:49] "[37mGET /doctor HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 16:54:58] "[37mGET /doctor HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 16:55:03] "[37mOPTIONS /doctor HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 16:55:03] "[37mPOST /doctor HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 16:55:03] "[37mGET /doctor HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 16:55:08] "[37mOPTIONS /doctor?roleid=853a606c-7848-391d-8f97-8786628d9df6 HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 16:55:08] "[37mDELETE /doctor?roleid=853a606c-7848-391d-8f97-8786628d9df6 HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 16:55:08] "[37mGET /doctor HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:09:32] "[37mGET /doctor HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:09:33] "[37mOPTIONS /appointment HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:09:33] "[37mPOST /appointment HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:09:36] "[37mPOST /appointment HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:09:37] "[37mPOST /appointment HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:09:38] "[37mPOST /appointment HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:09:39] "[37mOPTIONS /appointment HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:09:39] "[37mPOST /appointment HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:09:39] "[37mPOST /appointment HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:09:50] "[37mGET /doctor HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:10:09] "[37mOPTIONS /appointment HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:10:09] "[37mPOST /appointment HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:10:20] "[37mGET /slots/e22dbfe3-5e03-36de-b45e-da4790f043ae HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:10:22] "[37mGET /slots/7e16d113-6af6-35cf-89b3-a4457840541e HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:10:22] "[37mOPTIONS /appointment HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:10:22] "[37mPOST /appointment HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:10:24] "[37mGET /slots/3d6ee664-cd8b-30d9-8eaa-7cdfb7a7529e HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:10:25] "[37mOPTIONS /appointment HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:10:25] "[37mPOST /appointment HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:10:29] "[37mOPTIONS /appointment HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:10:29] "[37mPOST /appointment HTTP/1.1[0m" 200 -
+68.33.109.149 - - [24/Sep/2019 17:10:33] "[37mGET /doctor HTTP/1.1[0m" 200 -

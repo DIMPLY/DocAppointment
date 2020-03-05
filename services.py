@@ -53,6 +53,9 @@ class Appointments(Services):
         parser.add_argument('start')
         parser.add_argument('end')
         args = parser.parse_args()
+        overlap = db.execute("SELECT count(*) FROM appointments WHERE endtime > '{start}'::timetz AND starttime < '{end}'::timetz AND doctorid = '{docid}' AND date = '{date}'::date".format(start=args['start'],end=args['end'],docid=args['doctorid'],date=args['date']))
+        if overlap[0]['count'] > 0:
+            return {'success': False, 'affectedrows': 0, 'info': 'cannot insert overlapped appointments'}
         query = 'insert into appointments values (\'{}\', \'{}\', 1, \'{}\', \'{}\', \'{}\')'.format(args['doctorid'], args['patientid'], args['date'], args['start'], args['end'])
         res = db.execute(query, post=True)
         return {'success': res==1, 'affectedrows': res}
@@ -83,7 +86,7 @@ SELECT
     s.starttime::time::text as slotstart,
     (s.starttime::time + interval '15 minute')::text as slotend,
     json_object_agg(s.starttime::date::text,
-(CASE WHEN EXISTS (SELECT 1 FROM appointments AS a WHERE s.starttime::time < a.endtime AND s.starttime::time + interval '15 minute' > a.starttime AND a.doctorid = '{}' AND a.date = s.starttime::date) OR extract(dow from s.starttime) IN (1,6) THEN 1 ELSE 0 END)
+(CASE WHEN EXISTS (SELECT 1 FROM appointments AS a WHERE s.starttime::time < a.endtime AND s.starttime::time + interval '15 minute' > a.starttime AND a.doctorid = '{}' AND a.date = s.starttime::date) OR extract(dow from s.starttime) IN (0,6) THEN 1 ELSE 0 END)
 ) as occupation
 FROM (
     SELECT
