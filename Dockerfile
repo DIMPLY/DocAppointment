@@ -2,13 +2,13 @@ FROM ubuntu:16.04
 
 MAINTAINER Yan Yang "yy4jobs@gmail.com"
 
-RUN apt-get update -y && apt-get install -y python-pip python-dev && pip install --upgrade pip
+RUN apt-get update -y && apt-get install -y python3-pip python3-dev && pip3 install --upgrade pip3
 
 COPY ./requirements.txt /app/requirements.txt
 
 WORKDIR /app
 
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 COPY . /app
 
