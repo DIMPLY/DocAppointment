@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-MAINTANER Yan Yang "yy4jobs@gmail.com"
+MAINTAINER Yan Yang "yy4jobs@gmail.com"
 
 RUN apt-get update -y && apt-get install -y python-pip python-dev
 
