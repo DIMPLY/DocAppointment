@@ -1,0 +1,16 @@
+apiVersion : apps/v1beta1
+kind: Deployment
+metadata:
+  name: "docappt"
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: "docappt"
+    spec:
+      containers:
+        - name: "docappt"
+          image: "docappapi.azurecr.io/docappt"
+          ports:
+          - containerPort: 80
