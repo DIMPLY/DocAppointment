@@ -1,0 +1,48 @@
+doctors (
+  id uuid NOT NULL,
+  firstname varchar(25) NOT NULL,
+  lastname varchar(25),
+  PRIMARY KEY (id)
+)
+
+patients (
+  id uuid NOT NULL,
+  firstname varchar(25) NOT NULL,
+  lastname varchar(25),
+  PRIMARY KEY (id)
+)
+
+medicines (
+  id uuid NOT NULL,
+  name varchar(50),
+  PRIMARY KEY (id)
+)
+
+appointments (
+  doctorid uuid NOT NULL REFERENCES doctors(id),
+  patientid uuid NOT NULL REFERENCES patients(id),
+  status integer NOT NULL DEFAULT '1',
+  date date NOT NULL,
+  starttime time with time zone NOT NULL CHECK (mod(date_part('minute'::text, starttime)::integer, 15) = 0 AND date_part('second'::text, starttime) = 0::double precision AND date_part('hour'::text, starttime) >= 9::double precision AND date_part('hour'::text, starttime) <= 16::double precision),
+  endtime time with time zone NOT NULL CHECK (endtime > starttime AND mod(date_part('minute'::text, endtime)::integer, 15) = 0 AND date_part('second'::text, endtime) = 0::double precision AND date_part('hour'::text, endtime) >= 9::double precision AND date_part('hour'::text, endtime - '00:00:01'::interval) <= 16::double precision),
+  PRIMARY KEY (doctorid, date, starttime)
+)
+
+prescriptions (
+  id uuid NOT NULL,
+  doctorid uuid NOT NULL REFERENCES doctors(id),
+  patientid uuid NOT NULL REFERENCES patients(id),
+  medicineid uuid NOT NULL REFERENCES medicines(id),
+  dose numeric NOT NULL,
+  dose_unit varchar(5) DEFAULT 'pill(s)'::bpchar,
+  dose_freq integer DEFAULT '1',
+  start_date date DEFAULT ('now'::text)::date,
+  duration interval,
+  create_date date DEFAULT ('now'::text)::date,
+  PRIMARY KEY (id)
+)
+
+numbers (
+  number integer NOT NULL,
+  PRIMARY KEY (number)
+)

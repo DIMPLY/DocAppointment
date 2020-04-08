@@ -4,7 +4,7 @@ import json
 
 class DataBase:
     def __init__(self):
-        self.conn = pg.connect(database = 'postgres')
+        self.conn = pg.connect(database='docker', user='postgres')
         self.cur = self.conn.cursor(cursor_factory=DictCursor)
 
     def execute(self, query, post=False):
