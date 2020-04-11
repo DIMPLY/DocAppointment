@@ -7,8 +7,10 @@ metadata:
 spec:
     type: LoadBalancer
     ports:
-    - port: 5002
+    - port: 31677
       targetPort: 5002
+      nodePort: 0
       protocol: TCP
+      name: default
     selector:
         app: "kubecluster"
