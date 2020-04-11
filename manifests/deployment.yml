@@ -1,0 +1,16 @@
+apiVersion : apps/v1beta1
+kind: Deployment
+metadata:
+  name: "kubecluster"
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: "kubecluster"
+    spec:
+      containers:
+        - name: "kubecluster"
+          image: "docappbackendapi.azurecr.io/kubecluster"
+          ports:
+          - containerPort: 5002
