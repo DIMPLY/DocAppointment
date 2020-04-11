@@ -20,7 +20,7 @@ COPY . /app
 # Install ``python-software-properties``, ``software-properties-common`` and PostgreSQL 9.3
 #  There are some warnings (in red) that show up during the build. You can hide
 #  them by prefixing each apt-get statement with DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install -y curl python-software-properties software-properties-common postgresql-9.3 postgresql-client-9.3 postgresql-contrib-9.3 python3-pip python3-dev && pip3 install --upgrade pip && pip3 install -r requirements.txt && su - && apt-get install sudo -y
+RUN apt-get update && apt-get install -y curl dnsutils python-software-properties software-properties-common postgresql-9.3 postgresql-client-9.3 postgresql-contrib-9.3 python3-pip python3-dev && pip3 install --upgrade pip && pip3 install -r requirements.txt && su - && apt-get install sudo -y
 
 # Note: The official Debian and Ubuntu images automatically ``apt-get clean``
 # after each ``apt-get``
