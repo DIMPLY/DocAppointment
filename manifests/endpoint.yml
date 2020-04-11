@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: kubecluster
+subsets:
+  - addresses:
+      - ip: 40.91.125.57
+    ports:
+      - port: 31677
