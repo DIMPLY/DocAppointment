@@ -4,7 +4,7 @@ import json
 
 class DataBase:
     def __init__(self):
-        self.conn = pg.connect(database='docker', user='postgres')
+        self.conn = pg.connect(host='postgre-docapp.postgres.database.azure.com', password='azure@2020', port='5432', sslmode='true', dbname='docker', user='postgres@postgre-docapp')
         self.cur = self.conn.cursor(cursor_factory=DictCursor)
 
     def execute(self, query, post=False):
