@@ -3,7 +3,7 @@ from psycopg2.extras import DictCursor
 import json
 
 # dbname='{your_database}' user='postgres@postgre-docapp' host='postgre-docapp.postgres.database.azure.com' password='{your_password}' port='5432' sslmode='true'
-conn = pg.connect(host='postgre-docapp.postgres.database.azure.com', password='azure@2020', port='5432', sslmode='true', user='postgres@postgre-docapp')
+conn = pg.connect(host='postgre-docapp.postgres.database.azure.com', password='azure@2020', port='5432', sslmode=True, user='postgres@postgre-docapp')
 conn.set_isolation_level(pg.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
 cur = conn.cursor(cursor_factory=DictCursor)
 
