@@ -28,37 +28,36 @@ jobs:
     - name: Logout of Amazon ECR
       if: always()
       run: docker logout ${{ steps.login-ecr.outputs.registry }}
-""" 
-    - uses: azure/k8s-set-context@v1
-      id: login
-      with:
-         kubeconfig: ${{ secrets.aks_kubecluster_kubeConfig }}
-    
-    - name: Create namespace
-      run: |
-        namespacePresent=`kubectl get namespace | grep kubecluster30b1 | wc -l`
-        if [ $namespacePresent -eq 0 ]
-        then
-            echo `kubectl create namespace kubecluster30b1`
-        fi
 
-    - uses: azure/k8s-create-secret@v1
-      with:
-        namespace: kubecluster30b1
-        container-registry-url: docappbackendapi.azurecr.io
-        container-registry-username: ${{ steps.create-acr.outputs.acr_username }}
-        container-registry-password: ${{ steps.create-acr.outputs.acr_password }}
-        secret-name: kubeclusterdockerauth
-       
-    - uses: azure/k8s-deploy@v1
-      with:
-        namespace: kubecluster30b1
-        manifests: |
-          #manifests/deployment.yml
-          #manifests/service.yml
-          #manifests/endpoint.yml
-        images: |
-          docappbackendapi.azurecr.io/kubecluster:${{ github.sha }}
-        imagepullsecrets: |
-          kubeclusterdockerauth
-"""
+#    - uses: azure/k8s-set-context@v1
+#      id: login
+#      with:
+#         kubeconfig: ${{ secrets.aks_kubecluster_kubeConfig }}
+#    
+#    - name: Create namespace
+#      run: |
+#        namespacePresent=`kubectl get namespace | grep kubecluster30b1 | wc -l`
+#        if [ $namespacePresent -eq 0 ]
+#        then
+#            echo `kubectl create namespace kubecluster30b1`
+#        fi
+#
+#    - uses: azure/k8s-create-secret@v1
+#      with:
+#        namespace: kubecluster30b1
+#        container-registry-url: docappbackendapi.azurecr.io
+#        container-registry-username: ${{ steps.create-acr.outputs.acr_username }}
+#        container-registry-password: ${{ steps.create-acr.outputs.acr_password }}
+#        secret-name: kubeclusterdockerauth
+#       
+#    - uses: azure/k8s-deploy@v1
+#      with:
+#        namespace: kubecluster30b1
+#        manifests: |
+#          #manifests/deployment.yml
+#          #manifests/service.yml
+#          #manifests/endpoint.yml
+#        images: |
+#          docappbackendapi.azurecr.io/kubecluster:${{ github.sha }}
+#        imagepullsecrets: |
+#          kubeclusterdockerauth
