@@ -11,9 +11,9 @@ RUN apt-get update && apt-get install -y python-software-properties software-pro
 
 EXPOSE 5002
 
-WORKDIR /app
-
 COPY . /app
+
+WORKDIR /app
 
 RUN pip3 install -r requirements.txt
 
