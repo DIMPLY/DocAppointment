@@ -42,7 +42,7 @@ jobs:
       with:
         task-definition: ${{ steps.render-web-container.outputs.task-definition }}
         service: api-service
-        cluster: api-cluster
+        cluster: DocAppCluster
 #    - uses: azure/k8s-set-context@v1
 #      id: login
 #      with:
