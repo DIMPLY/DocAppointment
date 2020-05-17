@@ -34,7 +34,7 @@ jobs:
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: task-definition.json
-        container-name: web
+        container-name: docapp-api
         image: 050115469000.dkr.ecr.us-west-2.amazonaws.com/my_first_repo:latest
 
     - name: Deploy to Amazon ECS service
