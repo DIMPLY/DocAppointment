@@ -28,8 +28,7 @@ jobs:
     - name: Logout of Amazon ECR
       if: always()
       run: docker logout ${{ steps.login-ecr.outputs.registry }}
-      #### 
-''' 
+""" 
     - uses: azure/k8s-set-context@v1
       id: login
       with:
@@ -61,4 +60,5 @@ jobs:
         images: |
           docappbackendapi.azurecr.io/kubecluster:${{ github.sha }}
         imagepullsecrets: |
-          kubeclusterdockerauth'''
+          kubeclusterdockerauth
+"""
