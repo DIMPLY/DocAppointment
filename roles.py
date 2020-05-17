@@ -1,3 +1,4 @@
+from hashlib import pbkdf2_hmac
 from flask_restful import Resource, reqparse
 from database import DataBase
 db = DataBase()
@@ -11,10 +12,14 @@ class Roles(Resource):
     def post(self):
         parser.add_argument('firstname', type=str)
         parser.add_argument('lastname', type=str)
+        if self.category == 'patient':
+            parser.add_argument('username', type=str)
+            parser.add_argument('password', type=str)
         args = parser.parse_args()
-        firstname, lastname = args['firstname'], args['lastname']
+        firstname, lastname, username, password = args['firstname'], args['lastname'], args['username'], pbkdf2_hmac('sha256', args['password'].encode('utf-8'), '?AzP7@0'.encode('utf-8'), 100000).decode('latin')
         newid = db.execute("select uuid_generate_v3(uuid_generate_v1(),\'{}\')".format(firstname))[0]['uuid_generate_v3']
-        query = 'insert into {}s values (\'{}\', \'{}\', \'{}\')'.format(self.category, newid, firstname, lastname)
+        insvals = '\'{}\', {}\'{}\', \'{}\''.format(newid, '\'{}\', \'{}\', '.format(username, password) if self.category == 'patient' else '', firstname, lastname)
+        query = 'insert into {}s values ({})'.format(self.category, insvals)
         res = db.execute(query, post=True)
         return {'success': res==1, 'affectedrows': res, 'id': newid}
 
@@ -42,6 +47,15 @@ class Roles(Resource):
 
 class Patients(Roles):
     category = 'patient'
+
+class Login(Resource):
+    def post(self):
+        parser.add_argument('username', required=True)
+        parser.add_argument('password', required=True)
+        args = parser.parse_args()
+        user, pw = args['username'], pbkdf2_hmac('sha256', args['password'].encode('utf-8'), '?AzP7@0'.encode('utf-8'), 100000).decode('latin')
+        pws = {row['password']:row for row in db.execute('select * from patients where username = \'{}\''.format(user))}
+        return {'success': pw in pws, 'user': None if pw not in pws else pws[pw]}
 
 class Doctors(Roles):
     category = 'doctor'

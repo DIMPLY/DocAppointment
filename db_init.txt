@@ -7,7 +7,9 @@ doctors (
 
 patients (
   id uuid NOT NULL,
-  firstname varchar(25) NOT NULL,
+  username varchar(25) NOT NULL,
+  password varchar(500) NOT NULL,
+  firstname varchar(25),
   lastname varchar(25),
   PRIMARY KEY (id)
 )
