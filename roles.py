@@ -32,7 +32,7 @@ class Roles(Resource):
             if isinstance(res, int) or res == "no results to fetch":
                 res = db.execute('delete from {}s where id=\'{}\''.format(self.category, roleid), post=True)
         success = res==1
-        return {'success': success, 'affectedrows': res}
+        return {'success': success, 'affectedrows': res}, 200 if success else 401
 
     def put(self):
         parser.add_argument('id', required=True)
