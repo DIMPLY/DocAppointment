@@ -21,7 +21,8 @@ RUN pip3 install -r requirements.txt
 # after each ``apt-get``
 
 # Expose the DocApp port
-VOLUME ["./logs"]
+#VOLUME ["./logs"]
 # Set the default command to run when starting the container
-CMD python3 docapp.py >> logs/backend.log
+CMD python3 docapp.py 
+#>> logs/backend.log
 
