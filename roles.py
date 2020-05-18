@@ -16,12 +16,14 @@ class Roles(Resource):
             parser.add_argument('username', type=str)
             parser.add_argument('password', type=str)
         args = parser.parse_args()
-        firstname, lastname, username, password = args['firstname'], args['lastname'], args['username'], pbkdf2_hmac('sha256', args['password'].encode('utf-8'), '?AzP7@0'.encode('utf-8'), 100000).decode('latin')
+        firstname, lastname = args['firstname'], args['lastname']
+        if self.category == 'patient':
+            username, password = args['username'], pbkdf2_hmac('sha256', args['password'].encode('utf-8'), '?AzP7@0'.encode('utf-8'), 100000).decode('latin')
         newid = db.execute("select uuid_generate_v3(uuid_generate_v1(),\'{}\')".format(firstname))[0]['uuid_generate_v3']
         insvals = '\'{}\', {}\'{}\', \'{}\''.format(newid, '\'{}\', \'{}\', '.format(username, password) if self.category == 'patient' else '', firstname, lastname)
         query = 'insert into {}s values ({})'.format(self.category, insvals)
         res = db.execute(query, post=True)
-        return {'success': res==1, 'affectedrows': res, 'id': newid}
+        return {'success': res==1, 'affectedrows': res, 'id': newid}, 200 if res==1 else 400
 
     def delete(self):
         parser.add_argument('roleid', type=str)
