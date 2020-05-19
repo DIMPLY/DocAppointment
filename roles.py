@@ -23,7 +23,8 @@ class Roles(Resource):
         insvals = '\'{}\', {}\'{}\', \'{}\''.format(newid, '\'{}\', \'{}\', '.format(username, password) if self.category == 'patient' else '', firstname, lastname)
         query = 'insert into {}s values ({})'.format(self.category, insvals)
         res = db.execute(query, post=True)
-        return {'success': res==1, 'affectedrows': res, 'id': newid}, 200 if res==1 else 400
+        print('res', res)
+        return {'success': res==1, 'affectedrows': res, 'id': newid}, (200 if res==1 else 400)
 
     def delete(self):
         parser.add_argument('roleid', type=str)
@@ -34,7 +35,8 @@ class Roles(Resource):
             if isinstance(res, int) or res == "no results to fetch":
                 res = db.execute('delete from {}s where id=\'{}\''.format(self.category, roleid), post=True)
         success = res==1
-        return {'success': success, 'affectedrows': res}, 200 if success else 401
+        print('res', res)
+        return {'success': success, 'affectedrows': res}, (200 if success else 401)
 
     def put(self):
         parser.add_argument('id', required=True)
@@ -43,7 +45,6 @@ class Roles(Resource):
         args = parser.parse_args()
         first, last = args['firstname'], args['lastname']
         query = ('update {}s set '.format(self.category)) + ('firstname=\'{}\' '.format(first) if first else '') + ('and ' if first and last else '') + ('lastname=\'{}\' '.format(last) if last else '') + 'where id=\'{}\''.format(args['id'])
-        print(query)
         res = db.execute(query, post=True)
         return {'success': res==1, 'affectedrows': res}
 

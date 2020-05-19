@@ -29,20 +29,23 @@ jobs:
       if: always()
       run: docker logout ${{ steps.login-ecr.outputs.registry }}
 
-    - name: Render Amazon ECS task definition
-      id: render-web-container
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
-      with:
-        task-definition: task-definition.json
-        container-name: docapp-api
-        image: 050115469000.dkr.ecr.us-west-2.amazonaws.com/my_first_repo:latest
-
-    - name: Deploy to Amazon ECS service
-      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-      with:
-        task-definition: ${{ steps.render-web-container.outputs.task-definition }}
-        service: api-service
-        cluster: DocAppCluster
+    - name: Deploy
+      run: |
+        aws ecs update-service --cluster DocAppCluster --service api-service --force-new-deployment
+      #    - name: Render Amazon ECS task definition
+      #      id: render-web-container
+      #      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      #      with:
+      #        task-definition: task-definition.json
+      #        container-name: docapp-api
+      #        image: 050115469000.dkr.ecr.us-west-2.amazonaws.com/my_first_repo:latest
+      #
+      #    - name: Deploy to Amazon ECS service
+      #      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      #      with:
+      #        task-definition: ${{ steps.render-web-container.outputs.task-definition }}
+      #        service: api-service
+      #        cluster: DocAppCluster
 #    - name: Create namespace
 #      run: |
 #        namespacePresent=`kubectl get namespace | grep kubecluster30b1 | wc -l`
